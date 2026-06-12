@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+/* ── GLYPHWARS design tokens ─────────────────────────────────────────── */
+@theme {
+  --font-display: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  --color-void: #060614;
+  --color-void-2: #0b0b22;
+  --color-ion: #4df3ff; /* primary neon cyan */
+  --color-ion-dim: #1c6e78;
+  --color-flare: #ff5c8a; /* hostile / error pink */
+  --color-volt: #ffc857; /* score / combo gold */
+  --color-hull: #8b5cf6; /* violet accent */
+  --color-mint: #5dffb0; /* success / powerups */
+  --color-ghost: #9aa3c7; /* muted text */
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-void);
+  color: #e8ecff;
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Neon text helper used across HUD + menus */
+.neon-text {
+  text-shadow:
+    0 0 6px currentColor,
+    0 0 24px color-mix(in srgb, currentColor 55%, transparent);
+}
+
+/* Subtle CRT-ish overlay drawn over the canvas. Disabled in reduced motion. */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(2, 2, 12, 0.55) 100%);
+  z-index: 30;
+}
+
+/* Keyboard-only navigation: make focus unmistakable */
+:focus-visible {
+  outline: 2px solid var(--color-ion);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-ion);
+  color: var(--color-void);
+}
+
+/* Thin custom scrollbar for menu lists */
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: #2a2f55;
+  border-radius: 3px;
+}

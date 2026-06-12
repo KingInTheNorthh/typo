@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vercel
+.vercel/
+
+# Logs & local junk
+*.log
+npm-debug.log*
+.DS_Store
+
+# Editor
+.idea/
+*.swp
+*.tsbuildinfo
